@@ -15,14 +15,12 @@ export class AskMessage extends LitElement {
       <div class="flex w-full ${isAssistant ? "" : "justify-end"}">
         <div
           class="${isAssistant
-            ? "max-w-full px-2 py-1.5"
-            : "max-w-[75%] px-3 py-1 rounded-xl rounded-tr-sm"} text-sm leading-[1.75] whitespace-pre-wrap break-words overflow-hidden"
+            ? "max-w-full px-2"
+            : "max-w-fit px-3 rounded-xl rounded-tr-sm"} py-1.5 text-sm leading-[1.75] whitespace-pre-wrap break-words overflow-hidden"
           style="${isAssistant
             ? "color: var(--ask-assistant-text, #171717)"
             : `background: var(--ask-user-bg, #f5f5f5); color: var(--ask-user-text, #171717)`}"
-        >
-          ${this.content}
-        </div>
+        >${this.content}</div>
       </div>
     `;
   }

@@ -2,6 +2,7 @@
 
 :host {
   display: block;
+  line-height: initial;
 }
 
 /* Dark mode via system preference */
