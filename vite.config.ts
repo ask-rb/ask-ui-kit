@@ -7,9 +7,7 @@ export default defineConfig({
       formats: ["es"],
       fileName: "index",
     },
-    rollupOptions: {
-      external: /^lit/,
-    },
+    rollupOptions: {},
     minify: false,
     sourcemap: true,
   },

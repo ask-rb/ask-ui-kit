@@ -1,1 +1,1 @@
-export { ChatMessage } from "./components/chat-message.js";
+export { AskMessage } from "./components/ask-message.js";
