@@ -5,7 +5,7 @@ Framework-agnostic Web Components for AI chat interfaces — built with [Lit](ht
 ## Installation
 
 ```bash
-npm install ask-ui-kit
+npm install @ask-rb/ask-ui-kit
 ```
 
 ## Usage
@@ -14,7 +14,7 @@ npm install ask-ui-kit
 
 ```html
 <script type="module">
-  import "ask-ui-kit";
+  import "@ask-rb/ask-ui-kit";
 </script>
 
 <ask-message role="user" content="What files do you have?"></ask-message>
@@ -24,11 +24,18 @@ npm install ask-ui-kit
 ### In a Rails app with importmap
 
 ```bash
-bin/importmap pin ask-ui-kit
+bin/importmap pin @ask-rb/ask-ui-kit
+```
+
+Or if JSPM doesn't support scoped packages:
+
+```ruby
+# config/importmap.rb
+pin "@ask-rb/ask-ui-kit", to: "https://unpkg.com/@ask-rb/ask-ui-kit@0.1.0/dist/index.js"
 ```
 
 ```erb
-<%= javascript_import_module_tag "ask-ui-kit" %>
+<%= javascript_import_module_tag "@ask-rb/ask-ui-kit" %>
 
 <ask-message role="user" content="<%= escape_javascript(message.content) %>"></ask-message>
 ```
@@ -37,7 +44,7 @@ bin/importmap pin ask-ui-kit
 
 ```svelte
 <script>
-  import "ask-ui-kit";
+  import "@ask-rb/ask-ui-kit";
 </script>
 
 <ask-message role={msg.role} content={msg.content} />
@@ -46,7 +53,7 @@ bin/importmap pin ask-ui-kit
 ### In a React app
 
 ```jsx
-import "ask-ui-kit";
+import "@ask-rb/ask-ui-kit";
 
 function ChatMessage({ role, content }) {
   return <ask-message role={role} content={content} />;
