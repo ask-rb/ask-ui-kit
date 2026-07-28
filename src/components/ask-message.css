@@ -26,24 +26,45 @@
   white-space: pre-wrap;
 }
 
+/* --- Light mode (default) --- */
 .bubble.user {
-  background: #f5f5f5;
-  color: #171717;
+  background: var(--ask-user-bg, #f5f5f5);
+  color: var(--ask-user-text, #171717);
   border-radius: 0.75rem 0.125rem 0.75rem 0.75rem;
-}
-
-:host-context(.dark) .bubble.user {
-  background: #262626;
-  color: #f5f5f5;
 }
 
 .bubble.assistant {
   background: transparent;
-  color: #171717;
+  color: var(--ask-assistant-text, #171717);
   max-width: 100%;
   padding-left: 0;
 }
 
+/* --- Dark theme — via system preference (automatic) --- */
+@media (prefers-color-scheme: dark) {
+  .bubble.user {
+    background: var(--ask-user-bg-dark, #262626);
+    color: var(--ask-user-text-dark, #f5f5f5);
+  }
+  .bubble.assistant {
+    color: var(--ask-assistant-text-dark, #f5f5f5);
+  }
+}
+
+/* --- Dark theme — via host app's .dark class (manual toggle) --- */
+:host-context(.dark) .bubble.user {
+  background: var(--ask-user-bg-dark, #262626);
+  color: var(--ask-user-text-dark, #f5f5f5);
+}
 :host-context(.dark) .bubble.assistant {
-  color: #f5f5f5;
+  color: var(--ask-assistant-text-dark, #f5f5f5);
+}
+
+/* --- Override: host app explicitly in light mode — reverts system dark --- */
+:host-context(.light) .bubble.user {
+  background: var(--ask-user-bg, #f5f5f5);
+  color: var(--ask-user-text, #171717);
+}
+:host-context(.light) .bubble.assistant {
+  color: var(--ask-assistant-text, #171717);
 }
