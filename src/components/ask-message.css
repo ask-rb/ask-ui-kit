@@ -1,0 +1,49 @@
+/* AskMessage component styles — processed by Tailwind via Vite */
+@import "tailwindcss";
+
+:host {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.message-row {
+  display: flex;
+  width: 100%;
+}
+
+.message-row.user {
+  justify-content: end;
+}
+
+.bubble {
+  max-width: 75%;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.bubble.user {
+  background: #f5f5f5;
+  color: #171717;
+  border-radius: 0.75rem 0.125rem 0.75rem 0.75rem;
+}
+
+:host-context(.dark) .bubble.user {
+  background: #262626;
+  color: #f5f5f5;
+}
+
+.bubble.assistant {
+  background: transparent;
+  color: #171717;
+  max-width: 100%;
+  padding-left: 0;
+}
+
+:host-context(.dark) .bubble.assistant {
+  color: #f5f5f5;
+}
