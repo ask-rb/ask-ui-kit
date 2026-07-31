@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script type="importmap">
+  {
+    "imports": {
+      "@ask-rb/ask-ui-kit": "/ask-ui-kit.js"
+    }
+  }
+  </script>
+  <script type="module">
+  import "@ask-rb/ask-ui-kit";
+  
+  const el = document.createElement("ask-thinking");
+  el.setAttribute("streaming", "");
+  el.label = "Thinking";
+  el.dataset.startTime = String(Date.now());
+  document.body.appendChild(el);
+  
+  el.content += "Step 1: ";
+  setTimeout(() => { el.content += "analyze "; }, 100);
+  setTimeout(() => { el.content += "the data"; }, 200);
+  setTimeout(() => { 
+    el.removeAttribute("streaming");
+    delete el.dataset.startTime;
+    el.dataset.finalized = "";
+    el.label = "Thought for 1s";
+  }, 500);
+  </script>
+</head>
+<body>
+  <h1>Test</h1>
+  <ask-message role="user" content="Hello with a double quote "inside" here"></ask-message>
+  <ask-message role="assistant" content="Simple text"></ask-message>
+  <ask-thinking content="Thinking with "quotes" inside"></ask-thinking>
+  <ask-thinking streaming label="Thinking"></ask-thinking>
+</body>
+</html>

@@ -1,1 +1,16 @@
 export { AskMessage } from "./components/ask-message.js";
+export { AskThinking } from "./components/ask-thinking.js";
+export { AskToolCall } from "./components/ask-tool-call.js";
+export { AskStreaming } from "./components/ask-streaming.js";
+export { AskCodeBlock } from "./components/ask-code-block.js";
+export { AskChatInput } from "./components/ask-chat-input.js";
+export { AskAvatar } from "./components/ask-avatar.js";
+export { AskAttachment } from "./components/ask-attachment.js";
+export { AskError } from "./components/ask-error.js";
+export { AskSuggestions } from "./components/ask-suggestions.js";
+export { AskModelSelector } from "./components/ask-model-selector.js";
+export { AskMarkdown } from "./components/ask-markdown.js";
+export { AskFileUpload } from "./components/ask-file-upload.js";
+export { AskConversationList } from "./components/ask-conversation-list.js";
+export { AskVoiceInput } from "./components/ask-voice-input.js";
+export { AskScrollBottom } from "./components/ask-scroll-bottom.js";

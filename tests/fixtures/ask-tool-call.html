@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ask-tool-call test fixture</title>
+</head>
+<body>
+  <ask-tool-call name="Read File" status="running"></ask-tool-call>
+  <hr>
+  <ask-tool-call name="Extract Data" status="done" duration="1234"></ask-tool-call>
+  <hr>
+  <ask-tool-call name="Process PDF" status="failed" duration="567"></ask-tool-call>
+  <hr>
+  <ask-tool-call name="Default Tool"></ask-tool-call>
+
+  <script type="module" src="/dist/index.js"></script>
+</body>
+</html>

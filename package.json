@@ -1,6 +1,6 @@
 {
-  "name": "@ask-rb/ask-ui-kit",
-  "version": "0.1.0",
+  "name": "ask-ui-kit",
+  "version": "0.3.0",
   "description": "Framework-agnostic Web Components for AI chat interfaces — built with Lit",
   "license": "MIT",
   "type": "module",
@@ -17,19 +17,19 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest run",
-    "test:watch": "vitest"
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:watch": "playwright test --ui"
   },
   "dependencies": {
     "lit": "^3.3.0"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.3.3",
+    "@playwright/test": "^1.62.0",
     "lit": "^3.3.0",
-    "tailwindcss": "^4.3.3",
+    "playwright": "^1.62.0",
     "typescript": "^5.7.0",
-    "vite": "^6.0.0",
-    "vitest": "^4.1.0"
+    "vite": "^6.0.0"
   },
   "publishConfig": {
     "access": "public"

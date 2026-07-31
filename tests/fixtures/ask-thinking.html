@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ask-thinking test fixture</title>
+  <style>
+    body { margin: 0; padding: 16px; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <h2>ask-thinking Test Fixture</h2>
+
+  <!-- Thinking block with content -->
+  <ask-thinking content="I need to analyze the user's request step by step..."></ask-thinking>
+  <hr>
+
+  <!-- Custom label -->
+  <ask-thinking label="Reasoning" content="Step 1: Understand the problem..."></ask-thinking>
+  <hr>
+
+  <!-- Empty thinking block (should render nothing) -->
+  <ask-thinking></ask-thinking>
+  <hr>
+
+  <!-- Open by default -->
+  <ask-thinking open content="Already expanded content"></ask-thinking>
+  <hr>
+
+  <!-- Streaming mode -->
+  <ask-thinking streaming label="Thinking" content="Streaming content..."></ask-thinking>
+  <hr>
+
+  <!-- Streaming mode with no content -->
+  <ask-thinking streaming label="Thinking"></ask-thinking>
+
+  <script type="module" src="/dist/index.js"></script>
+</body>
+</html>

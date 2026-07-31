@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ask-code-block test fixture</title>
+</head>
+<body>
+  <!-- Code block with language -->
+  <ask-code-block language="javascript" code='console.log("hello");'></ask-code-block>
+  <hr>
+  <!-- Code block without language -->
+  <ask-code-block code="npm install ask-ui-kit"></ask-code-block>
+  <hr>
+  <!-- Empty code block (should render nothing) -->
+  <ask-code-block></ask-code-block>
+
+  <script type="module" src="/dist/index.js"></script>
+</body>
+</html>

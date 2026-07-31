@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ask-message test fixture</title>
+  <style>
+    body { margin: 0; padding: 16px; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <h2>ask-message Test Fixture</h2>
+
+  <!-- User message -->
+  <ask-message role="user" content="Hello from user"></ask-message>
+  <hr>
+  <!-- Assistant message -->
+  <ask-message role="assistant" content="Hello from assistant"></ask-message>
+  <hr>
+  <!-- Empty message -->
+  <ask-message></ask-message>
+
+  <script type="module" src="/dist/index.js"></script>
+</body>
+</html>
