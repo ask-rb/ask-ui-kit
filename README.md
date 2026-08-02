@@ -1,20 +1,20 @@
 # ask-ui-kit
 
-Framework-agnostic Web Components for AI chat interfaces — built with [Lit](https://lit.dev).
+Framework-agnostic Web Components for AI chat interfaces, built with [Lit](https://lit.dev). Not a Ruby gem: install it as an npm package.
 
 ## Installation
 
 ```bash
-npm install @ask-rb/ask-ui-kit
+npm install ask-ui-kit
 ```
 
-## Usage
+## Quick Start
 
 ### In any HTML page
 
 ```html
 <script type="module">
-  import "@ask-rb/ask-ui-kit";
+  import "ask-ui-kit";
 </script>
 
 <ask-message role="user" content="What files do you have?"></ask-message>
@@ -23,19 +23,13 @@ npm install @ask-rb/ask-ui-kit
 
 ### In a Rails app with importmap
 
-```bash
-bin/importmap pin @ask-rb/ask-ui-kit
-```
-
-Or if JSPM doesn't support scoped packages:
-
 ```ruby
 # config/importmap.rb
-pin "@ask-rb/ask-ui-kit", to: "https://unpkg.com/@ask-rb/ask-ui-kit@0.1.0/dist/index.js"
+pin "ask-ui-kit", to: "https://unpkg.com/ask-ui-kit@0.3.0/dist/index.js"
 ```
 
 ```erb
-<%= javascript_import_module_tag "@ask-rb/ask-ui-kit" %>
+<%= javascript_import_module_tag "ask-ui-kit" %>
 
 <ask-message role="user" content="<%= escape_javascript(message.content) %>"></ask-message>
 ```
@@ -44,7 +38,7 @@ pin "@ask-rb/ask-ui-kit", to: "https://unpkg.com/@ask-rb/ask-ui-kit@0.1.0/dist/i
 
 ```svelte
 <script>
-  import "@ask-rb/ask-ui-kit";
+  import "ask-ui-kit";
 </script>
 
 <ask-message role={msg.role} content={msg.content} />
@@ -53,7 +47,7 @@ pin "@ask-rb/ask-ui-kit", to: "https://unpkg.com/@ask-rb/ask-ui-kit@0.1.0/dist/i
 ### In a React app
 
 ```jsx
-import "@ask-rb/ask-ui-kit";
+import "ask-ui-kit";
 
 function ChatMessage({ role, content }) {
   return <ask-message role={role} content={content} />;
@@ -62,36 +56,15 @@ function ChatMessage({ role, content }) {
 
 ## Components
 
-### `<ask-message>`
+16 Web Components:
 
-A chat bubble for user or assistant messages.
+`ask-message`, `ask-thinking`, `ask-tool-call`, `ask-streaming`, `ask-code-block`, `ask-chat-input`, `ask-avatar`, `ask-attachment`, `ask-error`, `ask-suggestions`, `ask-model-selector`, `ask-markdown`, `ask-file-upload`, `ask-conversation-list`, `ask-voice-input`, `ask-scroll-bottom`
 
-| Attribute | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `role` | `"user" \| "assistant"` | `"user"` | Message role — determines alignment and styling |
-| `content` | `string` | `""` | Message text content |
+Components respect dark mode automatically via `prefers-color-scheme` and a `.dark`/`.light` class on the host, and are themeable with CSS custom properties. See the docs site for per-component attributes, events, and theming.
 
-#### Theming via CSS custom properties
+## Full documentation
 
-```css
-ask-message {
-  --ask-user-bg: #f5f5f5;
-  --ask-user-text: #171717;
-  --ask-user-bg-dark: #262626;
-  --ask-user-text-dark: #f5f5f5;
-  --ask-assistant-text: #171717;
-  --ask-assistant-text-dark: #f5f5f5;
-}
-```
-
-#### Dark mode
-
-The component automatically respects:
-1. **System preference** — `@media (prefers-color-scheme: dark)`
-2. **Host `.dark` class** — `:host-context(.dark)` for manual toggle
-3. **Host `.light` class** — overrides system preference
-
-No configuration needed — works out of the box with Tailwind's dark mode, Rails themes, or any `.dark`/`.light` class on `<html>`.
+The full ask-rb documentation lives at https://ask-rb.github.io/ask-docs. The [UI Kit guide](https://ask-rb.github.io/ask-docs/core/ui-kit) documents every component in detail. API reference: https://ask-rb.github.io/ask-docs/reference/api.
 
 ## Development
 
