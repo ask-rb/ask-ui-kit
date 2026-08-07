@@ -1,8 +1,10 @@
 import { LitElement, html, css } from "lit";
+import { tokens } from "../styles/tokens.js";
 import { property } from "lit/decorators.js";
 
 export class AskAvatar extends LitElement {
-  static styles = css`
+  static styles = css`${tokens}
+
     :host {
       display: inline-flex;
     }
@@ -11,11 +13,11 @@ export class AskAvatar extends LitElement {
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 0.375rem;
+      border-radius: var(--ask-radius-small, 0.375rem);
       flex-shrink: 0;
       overflow: hidden;
-      background: var(--ask-avatar-bg, #e5e5e5);
-      color: var(--ask-avatar-text, #737373);
+      background: var(--ask-surface-active, #e5e5e5);
+      color: var(--ask-text-faint, #737373);
       font-size: 0.875rem;
       line-height: 1;
       font-weight: 500;
@@ -35,21 +37,8 @@ export class AskAvatar extends LitElement {
       height: 100%;
     }
 
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --ask-avatar-bg: var(--ask-avatar-bg-dark, #262626);
-        --ask-avatar-text: var(--ask-avatar-text-dark, #a3a3a3);
-      }
-    }
-    :host-context(.dark) {
-      --ask-avatar-bg: var(--ask-avatar-bg-dark, #262626);
-      --ask-avatar-text: var(--ask-avatar-text-dark, #a3a3a3);
-    }
-    :host-context(.light) {
-      --ask-avatar-bg: var(--ask-avatar-bg-light, #e5e5e5);
-      --ask-avatar-text: var(--ask-avatar-text-light, #737373);
-    }
+    
+    
   `;
 
   @property({ type: String }) src = "";

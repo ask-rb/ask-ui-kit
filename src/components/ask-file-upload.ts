@@ -1,4 +1,5 @@
 import { LitElement, html, css } from "lit";
+import { tokens } from "../styles/tokens.js";
 import { property, query } from "lit/decorators.js";
 
 export interface FileEntry {
@@ -9,7 +10,8 @@ export interface FileEntry {
 }
 
 export class AskFileUpload extends LitElement {
-  static styles = css`
+  static styles = css`${tokens}
+
     :host {
       display: block;
     }
@@ -19,23 +21,23 @@ export class AskFileUpload extends LitElement {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
+      gap: var(--ask-radius, 0.5rem);
       padding: 1.5rem 1rem;
-      border: 2px dashed var(--ask-upload-border, #d4d4d4);
+      border: 2px dashed var(--ask-border-strong, #d4d4d4);
       border-radius: 0.75rem;
-      background: var(--ask-upload-bg, #fafafa);
-      color: var(--ask-upload-text, #a3a3a3);
+      background: var(--ask-text-inverse, #fafafa);
+      color: var(--ask-text-muted, #a3a3a3);
       font-size: 0.8125rem;
       cursor: pointer;
       transition: border-color 0.15s, background 0.15s;
       text-align: center;
     }
     .dropzone:hover {
-      border-color: var(--ask-upload-hover-border, #a3a3a3);
-      background: var(--ask-upload-hover-bg, #f5f5f5);
+      border-color: var(--ask-text-muted, #a3a3a3);
+      background: var(--ask-text, #f5f5f5);
     }
     .dropzone:has(input:focus-visible) {
-      border-color: var(--ask-upload-hover-border, #a3a3a3);
+      border-color: var(--ask-text-muted, #a3a3a3);
     }
     .dropzone--disabled {
       opacity: 0.5;
@@ -53,34 +55,12 @@ export class AskFileUpload extends LitElement {
     .file-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: 0.5rem;
+      gap: var(--ask-radius, 0.5rem);
+      margin-top: var(--ask-radius, 0.5rem);
     }
 
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --ask-upload-border: var(--ask-upload-border-dark, #262626);
-        --ask-upload-bg: var(--ask-upload-bg-dark, #1a1a1a);
-        --ask-upload-text: var(--ask-upload-text-dark, #525252);
-        --ask-upload-hover-border: var(--ask-upload-hover-border-dark, #404040);
-        --ask-upload-hover-bg: var(--ask-upload-hover-bg-dark, #141414);
-      }
-    }
-    :host-context(.dark) {
-      --ask-upload-border: var(--ask-upload-border-dark, #262626);
-      --ask-upload-bg: var(--ask-upload-bg-dark, #1a1a1a);
-      --ask-upload-text: var(--ask-upload-text-dark, #525252);
-      --ask-upload-hover-border: var(--ask-upload-hover-border-dark, #404040);
-      --ask-upload-hover-bg: var(--ask-upload-hover-bg-dark, #141414);
-    }
-    :host-context(.light) {
-      --ask-upload-border: var(--ask-upload-border-light, #d4d4d4);
-      --ask-upload-bg: var(--ask-upload-bg-light, #fafafa);
-      --ask-upload-text: var(--ask-upload-text-light, #a3a3a3);
-      --ask-upload-hover-border: var(--ask-upload-hover-border-light, #a3a3a3);
-      --ask-upload-hover-bg: var(--ask-upload-hover-bg-light, #f5f5f5);
-    }
+    
+    
   `;
 
   @property({ type: String }) accept = "";
@@ -90,7 +70,14 @@ export class AskFileUpload extends LitElement {
 
   @query(".dropzone-input", true) private _input!: HTMLInputElement;
 
-  private _handleClick() {
+  // Keyboard support for the dropzone (Enter/Space open the file picker).
+private _handleKeydown(e: KeyboardEvent) {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    this._handleClick();
+  }
+}
+private _handleClick() {
     if (this.disabled) return;
     this._input.click();
   }
@@ -158,7 +145,7 @@ export class AskFileUpload extends LitElement {
     const fileEntries = this._parsedFiles();
 
     return html`
-      <div class="dropzone ${this.disabled ? "dropzone--disabled" : ""}" @click=${this._handleClick}>
+      <div class="dropzone ${this.disabled ? "dropzone--disabled" : ""}" role="button" tabindex="0" aria-disabled=${this.disabled} @click=${this._handleClick} @keydown=${this._handleKeydown}>
         <div class="dropzone-icon">📎</div>
         <div>Click to attach files</div>
         <input

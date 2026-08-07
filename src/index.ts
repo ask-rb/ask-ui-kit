@@ -12,5 +12,7 @@ export { AskModelSelector } from "./components/ask-model-selector.js";
 export { AskMarkdown } from "./components/ask-markdown.js";
 export { AskFileUpload } from "./components/ask-file-upload.js";
 export { AskConversationList } from "./components/ask-conversation-list.js";
+export { AskSidebar } from "./components/ask-sidebar.js";
 export { AskVoiceInput } from "./components/ask-voice-input.js";
 export { AskScrollBottom } from "./components/ask-scroll-bottom.js";
+export { tokens } from "./styles/tokens.js";

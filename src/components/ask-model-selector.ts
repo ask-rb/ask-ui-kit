@@ -1,4 +1,5 @@
 import { LitElement, html, css } from "lit";
+import { tokens } from "../styles/tokens.js";
 import { property } from "lit/decorators.js";
 
 export interface ModelOption {
@@ -7,7 +8,8 @@ export interface ModelOption {
 }
 
 export class AskModelSelector extends LitElement {
-  static styles = css`
+  static styles = css`${tokens}
+
     :host {
       display: block;
     }
@@ -15,23 +17,23 @@ export class AskModelSelector extends LitElement {
     .selector-wrapper {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: var(--ask-radius, 0.5rem);
     }
 
     .selector-label {
       font-size: 0.8125rem;
       font-weight: 500;
-      color: var(--ask-selector-label, #525252);
+      color: var(--ask-text-faint, #525252);
       white-space: nowrap;
     }
 
     .selector-select {
       flex: 1;
-      padding: 0.375rem 0.625rem;
-      border-radius: 0.5rem;
-      border: 1px solid var(--ask-selector-border, #e5e5e5);
-      background: var(--ask-selector-bg, #fff);
-      color: var(--ask-selector-text, #171717);
+      padding: var(--ask-radius-small, 0.375rem) 0.625rem;
+      border-radius: var(--ask-radius, 0.5rem);
+      border: 1px solid var(--ask-border, #e5e5e5);
+      background: var(--ask-surface, #fff);
+      color: var(--ask-text, #171717);
       font-size: 0.8125rem;
       font-family: inherit;
       outline: none;
@@ -40,33 +42,11 @@ export class AskModelSelector extends LitElement {
       appearance: auto;
     }
     .selector-select:focus {
-      border-color: var(--ask-selector-focus-border, #a3a3a3);
+      border-color: var(--ask-text-muted, #a3a3a3);
     }
 
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --ask-selector-label: var(--ask-selector-label-dark, #a3a3a3);
-        --ask-selector-border: var(--ask-selector-border-dark, #262626);
-        --ask-selector-bg: var(--ask-selector-bg-dark, #1a1a1a);
-        --ask-selector-text: var(--ask-selector-text-dark, #f5f5f5);
-        --ask-selector-focus-border: var(--ask-selector-focus-border-dark, #525252);
-      }
-    }
-    :host-context(.dark) {
-      --ask-selector-label: var(--ask-selector-label-dark, #a3a3a3);
-      --ask-selector-border: var(--ask-selector-border-dark, #262626);
-      --ask-selector-bg: var(--ask-selector-bg-dark, #1a1a1a);
-      --ask-selector-text: var(--ask-selector-text-dark, #f5f5f5);
-      --ask-selector-focus-border: var(--ask-selector-focus-border-dark, #525252);
-    }
-    :host-context(.light) {
-      --ask-selector-label: var(--ask-selector-label-light, #525252);
-      --ask-selector-border: var(--ask-selector-border-light, #e5e5e5);
-      --ask-selector-bg: var(--ask-selector-bg-light, #fff);
-      --ask-selector-text: var(--ask-selector-text-light, #171717);
-      --ask-selector-focus-border: var(--ask-selector-focus-border-light, #a3a3a3);
-    }
+    
+    
   `;
 
   @property({ type: String }) options = "";

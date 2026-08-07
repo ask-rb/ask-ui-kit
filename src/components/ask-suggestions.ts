@@ -1,8 +1,10 @@
 import { LitElement, html, css } from "lit";
+import { tokens } from "../styles/tokens.js";
 import { property } from "lit/decorators.js";
 
 export class AskSuggestions extends LitElement {
-  static styles = css`
+  static styles = css`${tokens}
+
     :host {
       display: block;
     }
@@ -10,59 +12,34 @@ export class AskSuggestions extends LitElement {
     .suggestions-label {
       font-size: 0.75rem;
       font-weight: 500;
-      color: var(--ask-suggestions-label, #737373);
-      margin-bottom: 0.375rem;
+      color: var(--ask-text-faint, #737373);
+      margin-bottom: var(--ask-radius-small, 0.375rem);
     }
 
     .suggestions-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.375rem;
+      gap: var(--ask-radius-small, 0.375rem);
     }
 
     .suggestion-chip {
-      padding: 0.375rem 0.75rem;
-      border-radius: 9999px;
-      border: 1px solid var(--ask-suggestions-border, #e5e5e5);
-      background: var(--ask-suggestions-bg, #fff);
-      color: var(--ask-suggestions-text, #404040);
+      padding: var(--ask-radius-small, 0.375rem) 0.75rem;
+      border-radius: var(--ask-radius-pill, 9999px);
+      border: 1px solid var(--ask-border, #e5e5e5);
+      background: var(--ask-surface, #fff);
+      color: var(--ask-border-strong, #404040);
       font-size: 0.8125rem;
       cursor: pointer;
       transition: background 0.1s, border-color 0.1s;
       white-space: nowrap;
     }
     .suggestion-chip:hover {
-      background: var(--ask-suggestions-hover-bg, #f5f5f5);
-      border-color: var(--ask-suggestions-hover-border, #a3a3a3);
+      background: var(--ask-text, #f5f5f5);
+      border-color: var(--ask-text-muted, #a3a3a3);
     }
 
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --ask-suggestions-label: var(--ask-suggestions-label-dark, #525252);
-        --ask-suggestions-border: var(--ask-suggestions-border-dark, #262626);
-        --ask-suggestions-bg: var(--ask-suggestions-bg-dark, #1a1a1a);
-        --ask-suggestions-text: var(--ask-suggestions-text-dark, #e5e5e5);
-        --ask-suggestions-hover-bg: var(--ask-suggestions-hover-bg-dark, #262626);
-        --ask-suggestions-hover-border: var(--ask-suggestions-hover-border-dark, #525252);
-      }
-    }
-    :host-context(.dark) {
-      --ask-suggestions-label: var(--ask-suggestions-label-dark, #525252);
-      --ask-suggestions-border: var(--ask-suggestions-border-dark, #262626);
-      --ask-suggestions-bg: var(--ask-suggestions-bg-dark, #1a1a1a);
-      --ask-suggestions-text: var(--ask-suggestions-text-dark, #e5e5e5);
-      --ask-suggestions-hover-bg: var(--ask-suggestions-hover-bg-dark, #262626);
-      --ask-suggestions-hover-border: var(--ask-suggestions-hover-border-dark, #525252);
-    }
-    :host-context(.light) {
-      --ask-suggestions-label: var(--ask-suggestions-label-light, #737373);
-      --ask-suggestions-border: var(--ask-suggestions-border-light, #e5e5e5);
-      --ask-suggestions-bg: var(--ask-suggestions-bg-light, #fff);
-      --ask-suggestions-text: var(--ask-suggestions-text-light, #404040);
-      --ask-suggestions-hover-bg: var(--ask-suggestions-hover-bg-light, #f5f5f5);
-      --ask-suggestions-hover-border: var(--ask-suggestions-hover-border-light, #a3a3a3);
-    }
+    
+    
   `;
 
   @property({ type: String }) suggestions = "";

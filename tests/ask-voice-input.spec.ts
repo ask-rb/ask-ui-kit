@@ -64,7 +64,6 @@ test.describe("ask-voice-input", () => {
 
   test("disabled button does not fire events", async ({ page }) => {
     await page.goto(url("ask-voice-input"));
-    let fired = false;
     await page.evaluate(() => {
       const el = document.querySelectorAll("ask-voice-input")[2]; // disabled
       if (!el) return;

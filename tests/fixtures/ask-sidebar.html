@@ -1,0 +1,28 @@
+<ask-sidebar
+  groups='[
+    {"id":"sites","label":"Sites","nodes":[
+      {"id":"site-1","label":"Ruby on Rails","kind":"site","sub":"rubyonrails.org","children":[
+        {"id":"chat-1","label":"Migrations help","sub":"5m ago"},
+        {"id":"chat-2","label":"Deploy on Render","sub":"2h ago"}
+      ]},
+      {"id":"site-2","label":"Ruby","kind":"site","sub":"ruby-lang.org","children":[
+        {"id":"chat-3","label":"Syntax question","sub":"1d ago"}
+      ]}
+    ]},
+    {"id":"chats","label":"Chats","nodes":[
+      {"id":"chat-4","label":"best way to learn Rails","sub":"3m ago"}
+    ]}
+  ]'
+  activeId="chat-2">
+</ask-sidebar>
+
+<ask-sidebar
+  groups='[{"id":"chats","label":"Chats","collapsed":true,"nodes":[
+    {"id":"chat-9","label":"collapsed group chat","sub":"now"}
+  ]}]'
+  newChatLabel="Start a chat">
+</ask-sidebar>
+
+<ask-sidebar groups="[]"></ask-sidebar>
+
+<script type="module" src="/dist/index.js"></script>

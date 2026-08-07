@@ -8,7 +8,7 @@ test.describe("ask-thinking", () => {
   test("renders nothing when content is empty", async ({ page }) => {
     await page.goto(fixtureUrl("ask-thinking"));
 
-    const emptyHasShadow = await page.evaluate(() => {
+    const emptyHasShadow = await page.evaluate((): boolean | null => {
       const el = document.querySelectorAll("ask-thinking")[2]; // third is empty
       if (!el) return null;
       return el.shadowRoot !== null;
@@ -21,6 +21,7 @@ test.describe("ask-thinking", () => {
       return el.shadowRoot.textContent !== "";
     });
 
+    expect(emptyHasShadow).toBe(true);
     expect(hasBodyText).toBe(false);
   });
 

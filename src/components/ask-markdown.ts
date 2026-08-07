@@ -1,4 +1,5 @@
 import { LitElement, html, css } from "lit";
+import { tokens } from "../styles/tokens.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { property } from "lit/decorators.js";
 
@@ -36,7 +37,8 @@ function parseInlineMarkdown(text: string): string {
 }
 
 export class AskMarkdown extends LitElement {
-  static styles = css`
+  static styles = css`${tokens}
+
     :host {
       display: block;
     }
@@ -44,17 +46,17 @@ export class AskMarkdown extends LitElement {
     .markdown-content {
       font-size: 0.875rem;
       line-height: 1.75;
-      color: var(--ask-markdown-text, #171717);
+      color: var(--ask-text, #171717);
       word-wrap: break-word;
     }
 
     .markdown-content code {
-      background: var(--ask-markdown-code-bg, #f5f5f5);
-      padding: 0.125rem 0.375rem;
+      background: var(--ask-text, #f5f5f5);
+      padding: 0.125rem var(--ask-radius-small, 0.375rem);
       border-radius: 0.25rem;
       font-family: "SF Mono", Monaco, Menlo, monospace;
       font-size: 0.8125em;
-      color: var(--ask-markdown-code-text, #404040);
+      color: var(--ask-border-strong, #404040);
     }
 
     .markdown-content a {
@@ -79,27 +81,8 @@ export class AskMarkdown extends LitElement {
       margin: 0.25rem 0;
     }
 
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --ask-markdown-text: var(--ask-markdown-text-dark, #e5e5e5);
-        --ask-markdown-code-bg: var(--ask-markdown-code-bg-dark, #1a1a1a);
-        --ask-markdown-code-text: var(--ask-markdown-code-text-dark, #e5e5e5);
-        --ask-markdown-link: var(--ask-markdown-link-dark, #60a5fa);
-      }
-    }
-    :host-context(.dark) {
-      --ask-markdown-text: var(--ask-markdown-text-dark, #e5e5e5);
-      --ask-markdown-code-bg: var(--ask-markdown-code-bg-dark, #1a1a1a);
-      --ask-markdown-code-text: var(--ask-markdown-code-text-dark, #e5e5e5);
-      --ask-markdown-link: var(--ask-markdown-link-dark, #60a5fa);
-    }
-    :host-context(.light) {
-      --ask-markdown-text: var(--ask-markdown-text-light, #171717);
-      --ask-markdown-code-bg: var(--ask-markdown-code-bg-light, #f5f5f5);
-      --ask-markdown-code-text: var(--ask-markdown-code-text-light, #404040);
-      --ask-markdown-link: var(--ask-markdown-link-light, #3b82f6);
-    }
+    
+    
   `;
 
   @property({ type: String }) content = "";

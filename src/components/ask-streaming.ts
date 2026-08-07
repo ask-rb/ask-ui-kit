@@ -1,8 +1,10 @@
 import { LitElement, html, css } from "lit";
+import { tokens } from "../styles/tokens.js";
 import { property } from "lit/decorators.js";
 
 export class AskStreaming extends LitElement {
-  static styles = css`
+  static styles = css`${tokens}
+
     :host {
       display: block;
     }
@@ -13,7 +15,7 @@ export class AskStreaming extends LitElement {
     .streaming-content {
       font-size: 0.875rem;
       line-height: 1.75;
-      color: var(--ask-streaming-text, #171717);
+      color: var(--ask-text, #171717);
       white-space: pre-wrap;
     }
 
@@ -24,39 +26,12 @@ export class AskStreaming extends LitElement {
       margin-left: 2px;
       vertical-align: -0.15em;
       border-radius: 1px;
-      background: var(--ask-streaming-cursor, #737373);
+      background: var(--ask-text-faint, #737373);
       animation: ask-blink 1s step-end infinite;
     }
 
     @keyframes ask-blink {
       50% { opacity: 0; }
-    }
-
-    /* Theme via explicit [theme] attribute (apps control this directly —
-       outer stylesheet rules for host custom properties always win over
-       :host rules, so the attribute is the reliable signal) */
-    :host([theme="dark"]) {
-      --ask-streaming-text: var(--ask-streaming-text-dark, #f5f5f5);
-      --ask-streaming-cursor: var(--ask-streaming-cursor-dark, #a3a3a3);
-    }
-    :host([theme="light"]) {
-      --ask-streaming-text: var(--ask-streaming-text-light, #171717);
-      --ask-streaming-cursor: var(--ask-streaming-cursor-light, #737373);
-    }
-    /* Fallbacks for apps that don't set [theme] */
-    :host-context(.dark) {
-      --ask-streaming-text: var(--ask-streaming-text-dark, #f5f5f5);
-      --ask-streaming-cursor: var(--ask-streaming-cursor-dark, #a3a3a3);
-    }
-    :host-context(.light) {
-      --ask-streaming-text: var(--ask-streaming-text-light, #171717);
-      --ask-streaming-cursor: var(--ask-streaming-cursor-light, #737373);
-    }
-    @media (prefers-color-scheme: dark) {
-      :host(:not([theme])) {
-        --ask-streaming-text: var(--ask-streaming-text-dark, #f5f5f5);
-        --ask-streaming-cursor: var(--ask-streaming-cursor-dark, #a3a3a3);
-      }
     }
   `;
 

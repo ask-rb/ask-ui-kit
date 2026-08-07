@@ -1,8 +1,10 @@
 import { LitElement, html, css } from "lit";
+import { tokens } from "../styles/tokens.js";
 import { property } from "lit/decorators.js";
 
 export class AskAttachment extends LitElement {
-  static styles = css`
+  static styles = css`${tokens}
+
     :host {
       display: block;
     }
@@ -11,9 +13,9 @@ export class AskAttachment extends LitElement {
       display: flex;
       align-items: center;
       gap: 0.625rem;
-      padding: 0.5rem 0.75rem;
-      background: var(--ask-attachment-bg, #fafafa);
-      border: 1px solid var(--ask-attachment-border, #e5e5e5);
+      padding: var(--ask-radius, 0.5rem) 0.75rem;
+      background: var(--ask-text-inverse, #fafafa);
+      border: 1px solid var(--ask-border, #e5e5e5);
       border-radius: 0.75rem;
       position: relative;
     }
@@ -21,15 +23,15 @@ export class AskAttachment extends LitElement {
     .attachment-preview {
       width: 2.5rem;
       height: 2.5rem;
-      border-radius: 0.5rem;
+      border-radius: var(--ask-radius, 0.5rem);
       overflow: hidden;
       flex-shrink: 0;
-      background: var(--ask-attachment-preview-bg, #e5e5e5);
+      background: var(--ask-border, #e5e5e5);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.25rem;
-      color: var(--ask-attachment-preview-text, #a3a3a3);
+      color: var(--ask-text-muted, #a3a3a3);
     }
     .attachment-preview-img {
       width: 100%;
@@ -47,7 +49,7 @@ export class AskAttachment extends LitElement {
     .attachment-name {
       font-size: 0.8125rem;
       font-weight: 500;
-      color: var(--ask-attachment-name, #404040);
+      color: var(--ask-border-strong, #404040);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -55,22 +57,22 @@ export class AskAttachment extends LitElement {
     }
     .attachment-size {
       font-size: 0.6875rem;
-      color: var(--ask-attachment-size, #a3a3a3);
+      color: var(--ask-text-muted, #a3a3a3);
     }
 
     .attachment-remove {
       position: absolute;
-      top: -0.375rem;
-      right: -0.375rem;
+      top: -var(--ask-radius-small, 0.375rem);
+      right: -var(--ask-radius-small, 0.375rem);
       width: 1.25rem;
       height: 1.25rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 9999px;
+      border-radius: var(--ask-radius-pill, 9999px);
       border: none;
-      background: var(--ask-attachment-remove-bg, #262626);
-      color: var(--ask-attachment-remove-text, #fff);
+      background: var(--ask-border, #262626);
+      color: var(--ask-surface, #fff);
       font-size: 0.625rem;
       cursor: pointer;
       opacity: 0;
@@ -80,45 +82,11 @@ export class AskAttachment extends LitElement {
       opacity: 1;
     }
     .attachment-remove:hover {
-      background: var(--ask-attachment-remove-hover, #404040);
+      background: var(--ask-border-strong, #404040);
     }
 
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --ask-attachment-bg: var(--ask-attachment-bg-dark, #1a1a1a);
-        --ask-attachment-border: var(--ask-attachment-border-dark, #262626);
-        --ask-attachment-preview-bg: var(--ask-attachment-preview-bg-dark, #262626);
-        --ask-attachment-preview-text: var(--ask-attachment-preview-text-dark, #525252);
-        --ask-attachment-name: var(--ask-attachment-name-dark, #e5e5e5);
-        --ask-attachment-size: var(--ask-attachment-size-dark, #525252);
-        --ask-attachment-remove-bg: var(--ask-attachment-remove-bg-dark, #e5e5e5);
-        --ask-attachment-remove-text: var(--ask-attachment-remove-text-dark, #171717);
-        --ask-attachment-remove-hover: var(--ask-attachment-remove-hover-dark, #a3a3a3);
-      }
-    }
-    :host-context(.dark) {
-      --ask-attachment-bg: var(--ask-attachment-bg-dark, #1a1a1a);
-      --ask-attachment-border: var(--ask-attachment-border-dark, #262626);
-      --ask-attachment-preview-bg: var(--ask-attachment-preview-bg-dark, #262626);
-      --ask-attachment-preview-text: var(--ask-attachment-preview-text-dark, #525252);
-      --ask-attachment-name: var(--ask-attachment-name-dark, #e5e5e5);
-      --ask-attachment-size: var(--ask-attachment-size-dark, #525252);
-      --ask-attachment-remove-bg: var(--ask-attachment-remove-bg-dark, #e5e5e5);
-      --ask-attachment-remove-text: var(--ask-attachment-remove-text-dark, #171717);
-      --ask-attachment-remove-hover: var(--ask-attachment-remove-hover-dark, #a3a3a3);
-    }
-    :host-context(.light) {
-      --ask-attachment-bg: var(--ask-attachment-bg-light, #fafafa);
-      --ask-attachment-border: var(--ask-attachment-border-light, #e5e5e5);
-      --ask-attachment-preview-bg: var(--ask-attachment-preview-bg-light, #e5e5e5);
-      --ask-attachment-preview-text: var(--ask-attachment-preview-text-light, #a3a3a3);
-      --ask-attachment-name: var(--ask-attachment-name-light, #404040);
-      --ask-attachment-size: var(--ask-attachment-size-light, #a3a3a3);
-      --ask-attachment-remove-bg: var(--ask-attachment-remove-bg-light, #262626);
-      --ask-attachment-remove-text: var(--ask-attachment-remove-text-light, #fff);
-      --ask-attachment-remove-hover: var(--ask-attachment-remove-hover-light, #404040);
-    }
+    
+    
   `;
 
   @property({ type: String }) name = "";

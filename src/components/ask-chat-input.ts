@@ -1,8 +1,10 @@
 import { LitElement, html, css } from "lit";
+import { tokens } from "../styles/tokens.js";
 import { property, query } from "lit/decorators.js";
 
 export class AskChatInput extends LitElement {
-  static styles = css`
+  static styles = css`${tokens}
+
     :host {
       display: block;
     }
@@ -10,15 +12,15 @@ export class AskChatInput extends LitElement {
     .input-card {
       display: flex;
       align-items: flex-end;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      background: var(--ask-input-bg, #fff);
-      border: 1px solid var(--ask-input-border, #e5e5e5);
+      gap: var(--ask-radius, 0.5rem);
+      padding: var(--ask-radius, 0.5rem) 1rem;
+      background: var(--ask-surface, #fff);
+      border: 1px solid var(--ask-border, #e5e5e5);
       border-radius: 1.125rem;
       transition: border-color 0.15s;
     }
     .input-card:focus-within {
-      border-color: var(--ask-input-focus-border, #a3a3a3);
+      border-color: var(--ask-text-muted, #a3a3a3);
     }
 
     .input-textarea {
@@ -30,13 +32,13 @@ export class AskChatInput extends LitElement {
       font-family: inherit;
       font-size: 0.875rem;
       line-height: 1.5;
-      color: var(--ask-input-text, #171717);
+      color: var(--ask-text, #171717);
       min-height: 1.5rem;
       max-height: 12rem;
       padding: 0;
     }
     .input-textarea::placeholder {
-      color: var(--ask-input-placeholder, #a3a3a3);
+      color: var(--ask-text-muted, #a3a3a3);
     }
     .input-textarea:disabled {
       opacity: 0.5;
@@ -56,7 +58,7 @@ export class AskChatInput extends LitElement {
       justify-content: center;
       width: 2rem;
       height: 2rem;
-      border-radius: 9999px;
+      border-radius: var(--ask-radius-pill, 9999px);
       border: none;
       cursor: pointer;
       font-size: 1rem;
@@ -68,15 +70,15 @@ export class AskChatInput extends LitElement {
     }
 
     .btn-send {
-      background: var(--ask-input-send-bg, #171717);
-      color: var(--ask-input-send-text, #fff);
+      background: var(--ask-text, #171717);
+      color: var(--ask-surface, #fff);
     }
     .btn-send:hover:not(:disabled) {
-      background: var(--ask-input-send-hover-bg, #404040);
+      background: var(--ask-border-strong, #404040);
     }
 
     .btn-stop {
-      background: var(--ask-input-stop-bg, #f5f5f5);
+      background: var(--ask-text, #f5f5f5);
       color: var(--ask-input-stop-text, #ef4444);
     }
     .btn-stop:hover {
@@ -92,48 +94,8 @@ export class AskChatInput extends LitElement {
       display: none;
     }
 
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --ask-input-bg: var(--ask-input-bg-dark, #1a1a1a);
-        --ask-input-border: var(--ask-input-border-dark, #262626);
-        --ask-input-focus-border: var(--ask-input-focus-border-dark, #525252);
-        --ask-input-text: var(--ask-input-text-dark, #f5f5f5);
-        --ask-input-placeholder: var(--ask-input-placeholder-dark, #525252);
-        --ask-input-send-bg: var(--ask-input-send-bg-dark, #f5f5f5);
-        --ask-input-send-text: var(--ask-input-send-text-dark, #171717);
-        --ask-input-send-hover-bg: var(--ask-input-send-hover-bg-dark, #e5e5e5);
-        --ask-input-stop-bg: var(--ask-input-stop-bg-dark, #262626);
-        --ask-input-stop-text: var(--ask-input-stop-text-dark, #ef4444);
-        --ask-input-stop-hover-bg: var(--ask-input-stop-hover-bg-dark, #450a0a);
-      }
-    }
-    :host-context(.dark) {
-      --ask-input-bg: var(--ask-input-bg-dark, #1a1a1a);
-      --ask-input-border: var(--ask-input-border-dark, #262626);
-      --ask-input-focus-border: var(--ask-input-focus-border-dark, #525252);
-      --ask-input-text: var(--ask-input-text-dark, #f5f5f5);
-      --ask-input-placeholder: var(--ask-input-placeholder-dark, #525252);
-      --ask-input-send-bg: var(--ask-input-send-bg-dark, #f5f5f5);
-      --ask-input-send-text: var(--ask-input-send-text-dark, #171717);
-      --ask-input-send-hover-bg: var(--ask-input-send-hover-bg-dark, #e5e5e5);
-      --ask-input-stop-bg: var(--ask-input-stop-bg-dark, #262626);
-      --ask-input-stop-text: var(--ask-input-stop-text-dark, #ef4444);
-      --ask-input-stop-hover-bg: var(--ask-input-stop-hover-bg-dark, #450a0a);
-    }
-    :host-context(.light) {
-      --ask-input-bg: var(--ask-input-bg-light, #fff);
-      --ask-input-border: var(--ask-input-border-light, #e5e5e5);
-      --ask-input-focus-border: var(--ask-input-focus-border-light, #a3a3a3);
-      --ask-input-text: var(--ask-input-text-light, #171717);
-      --ask-input-placeholder: var(--ask-input-placeholder-light, #a3a3a3);
-      --ask-input-send-bg: var(--ask-input-send-bg-light, #171717);
-      --ask-input-send-text: var(--ask-input-send-text-light, #fff);
-      --ask-input-send-hover-bg: var(--ask-input-send-hover-bg-light, #404040);
-      --ask-input-stop-bg: var(--ask-input-stop-bg-light, #f5f5f5);
-      --ask-input-stop-text: var(--ask-input-stop-text-light, #ef4444);
-      --ask-input-stop-hover-bg: var(--ask-input-stop-hover-bg-light, #fee2e2);
-    }
+    
+    
   `;
 
   @property({ type: String }) value = "";

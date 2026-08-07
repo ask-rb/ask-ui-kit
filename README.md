@@ -60,7 +60,7 @@ function ChatMessage({ role, content }) {
 
 `ask-message`, `ask-thinking`, `ask-tool-call`, `ask-streaming`, `ask-code-block`, `ask-chat-input`, `ask-avatar`, `ask-attachment`, `ask-error`, `ask-suggestions`, `ask-model-selector`, `ask-markdown`, `ask-file-upload`, `ask-conversation-list`, `ask-voice-input`, `ask-scroll-bottom`
 
-Components respect dark mode automatically via `prefers-color-scheme` and a `.dark`/`.light` class on the host, and are themeable with CSS custom properties. See the docs site for per-component attributes, events, and theming.
+Components respect dark mode automatically (`[theme="dark"]` attribute, `.dark` class, or the OS setting) and the whole kit is themed through shared CSS custom properties (`--ask-text`, `--ask-surface`, ...) — see the docs site for attributes, events, and theming.
 
 ## Full documentation
 

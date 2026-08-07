@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <div id="target"></div>
+  <script type="module" src="/dist/index.js"></script>
+  <script type="module">
+    const el = document.createElement("ask-thinking");
+    el.setAttribute("streaming", "");
+    el.label = "Thinking";
+    el.dataset.startTime = String(Date.now());
+    document.getElementById("target").appendChild(el);
+
+    const texts = [
+      "Step 1: analyze the data",
+      "Step 2: \"double quotes\" inside",
+      "Step 3: 'single quotes' inside",
+      "Step 4: <angle brackets> inside",
+      "Step 5: special chars and stuff",
+    ];
+    for (const t of texts) {
+      el.content += t + "\n";
+    }
+
+    el.removeAttribute("streaming");
+    el.dataset.finalized = "";
+    el.label = "Thought for 2s";
+  </script>
+</body>
+</html>

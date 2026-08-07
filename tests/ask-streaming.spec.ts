@@ -73,6 +73,6 @@ test.describe("ask-streaming", () => {
       return el.shadowRoot.querySelector(".streaming-content")?.textContent;
     });
 
-    expect(text?.trim()).toBe("Hello, I am thinking... And more...▊");
+    expect(text?.trim()).toBe("Hello, I am thinking... And more...");
   });
 });

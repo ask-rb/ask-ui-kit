@@ -1,8 +1,10 @@
 import { LitElement, html, css } from "lit";
+import { tokens } from "../styles/tokens.js";
 import { property } from "lit/decorators.js";
 
 export class AskThinking extends LitElement {
-  static styles = css`
+  static styles = css`${tokens}
+
     :host {
       display: block;
     }
@@ -11,14 +13,14 @@ export class AskThinking extends LitElement {
     .thinking-header {
       display: flex;
       align-items: center;
-      gap: 0.375rem;
+      gap: var(--ask-radius-small, 0.375rem);
       cursor: pointer;
       user-select: none;
-      padding: 0.375rem 0.5rem;
-      border-radius: 0.5rem;
+      padding: var(--ask-radius-small, 0.375rem) var(--ask-radius, 0.5rem);
+      border-radius: var(--ask-radius, 0.5rem);
       font-size: 0.875rem;
       line-height: 1.75;
-      color: var(--ask-thinking-label, #737373);
+      color: var(--ask-text-faint, #737373);
       transition: background-color 0.15s ease;
     }
     .thinking-header:hover {
@@ -71,35 +73,16 @@ export class AskThinking extends LitElement {
       overflow: hidden;
       font-size: 0.875rem;
       line-height: 1.75;
-      color: var(--ask-thinking-text, #737373);
+      color: var(--ask-text-faint, #737373);
       padding-left: 1rem;
-      padding-bottom: 0.5rem;
+      padding-bottom: var(--ask-radius, 0.5rem);
       margin-left: 0.25rem;
       white-space: pre-wrap;
-      border-left: 2px solid var(--ask-thinking-border, #e5e5e5);
+      border-left: 2px solid var(--ask-border, #e5e5e5);
     }
 
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --ask-thinking-label: var(--ask-thinking-label-dark, #a3a3a3);
-        --ask-thinking-text: var(--ask-thinking-text-dark, #a3a3a3);
-        --ask-thinking-border: var(--ask-thinking-border-dark, #404040);
-        --ask-thinking-hover-bg: var(--ask-thinking-hover-bg-dark, rgba(255, 255, 255, 0.04));
-      }
-    }
-    :host-context(.dark) {
-      --ask-thinking-label: var(--ask-thinking-label-dark, #a3a3a3);
-      --ask-thinking-text: var(--ask-thinking-text-dark, #a3a3a3);
-      --ask-thinking-border: var(--ask-thinking-border-dark, #404040);
-      --ask-thinking-hover-bg: var(--ask-thinking-hover-bg-dark, rgba(255, 255, 255, 0.04));
-    }
-    :host-context(.light) {
-      --ask-thinking-label: var(--ask-thinking-label-light, #737373);
-      --ask-thinking-text: var(--ask-thinking-text-light, #737373);
-      --ask-thinking-border: var(--ask-thinking-border-light, #e5e5e5);
-      --ask-thinking-hover-bg: var(--ask-thinking-hover-bg-light, rgba(0, 0, 0, 0.04));
-    }
+    
+    
   `;
 
   @property({ type: String }) content = "";

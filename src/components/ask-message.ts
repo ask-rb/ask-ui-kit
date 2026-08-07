@@ -1,8 +1,10 @@
 import { LitElement, html, css } from "lit";
+import { tokens } from "../styles/tokens.js";
 import { property } from "lit/decorators.js";
 
 export class AskMessage extends LitElement {
-  static styles = css`
+  static styles = css`${tokens}
+
     :host {
       display: block;
     }
@@ -18,7 +20,7 @@ export class AskMessage extends LitElement {
 
     /* Bubble: user messages get a background bubble, assistant is flat */
     .message-bubble {
-      padding-block: 0.375rem;
+      padding-block: var(--ask-radius-small, 0.375rem);
       font-size: 0.875rem;
       line-height: 1.75;
       white-space: pre-wrap;
@@ -33,27 +35,12 @@ export class AskMessage extends LitElement {
     }
     .message-bubble--assistant {
       max-width: 100%;
-      padding-inline: 0.5rem;
+      padding-inline: var(--ask-radius, 0.5rem);
     }
 
     /* Theming via CSS custom properties */
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --ask-user-bg: var(--ask-user-bg-dark, #262626);
-        --ask-user-text: var(--ask-user-text-dark, #f5f5f5);
-        --ask-assistant-text: var(--ask-assistant-text-dark, #f5f5f5);
-      }
-    }
-    :host-context(.dark) {
-      --ask-user-bg: var(--ask-user-bg-dark, #262626);
-      --ask-user-text: var(--ask-user-text-dark, #f5f5f5);
-      --ask-assistant-text: var(--ask-assistant-text-dark, #f5f5f5);
-    }
-    :host-context(.light) {
-      --ask-user-bg: var(--ask-user-bg-light, #f5f5f5);
-      --ask-user-text: var(--ask-user-text-light, #171717);
-      --ask-assistant-text: var(--ask-assistant-text-light, #171717);
-    }
+    
+    
   `;
 
   @property({ type: String }) role: "user" | "assistant" = "user";
@@ -67,8 +54,8 @@ export class AskMessage extends LitElement {
         <div
           class="message-bubble ${isAssistant ? "message-bubble--assistant" : "message-bubble--user"}"
           style="${isAssistant
-            ? "color: var(--ask-assistant-text, #171717)"
-            : `background: var(--ask-user-bg, #f5f5f5); color: var(--ask-user-text, #171717)`}"
+            ? "color: var(--ask-text, #171717)"
+            : `background: var(--ask-text, #f5f5f5); color: var(--ask-text, #171717)`}"
         >${this.content}</div>
       </div>
     `;

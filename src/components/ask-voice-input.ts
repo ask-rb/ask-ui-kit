@@ -1,8 +1,10 @@
 import { LitElement, html, css } from "lit";
+import { tokens } from "../styles/tokens.js";
 import { property, state } from "lit/decorators.js";
 
 export class AskVoiceInput extends LitElement {
-  static styles = css`
+  static styles = css`${tokens}
+
     :host {
       display: inline-flex;
     }
@@ -13,17 +15,17 @@ export class AskVoiceInput extends LitElement {
       justify-content: center;
       width: 2.5rem;
       height: 2.5rem;
-      border-radius: 9999px;
-      border: 1px solid var(--ask-voice-border, #e5e5e5);
-      background: var(--ask-voice-bg, #fff);
-      color: var(--ask-voice-text, #525252);
+      border-radius: var(--ask-radius-pill, 9999px);
+      border: 1px solid var(--ask-border, #e5e5e5);
+      background: var(--ask-surface, #fff);
+      color: var(--ask-text-faint, #525252);
       cursor: pointer;
       font-size: 1.125rem;
       transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
       position: relative;
     }
     .voice-btn:hover:not(:disabled) {
-      background: var(--ask-voice-hover-bg, #f5f5f5);
+      background: var(--ask-text, #f5f5f5);
     }
     .voice-btn:disabled {
       opacity: 0.4;
@@ -31,8 +33,8 @@ export class AskVoiceInput extends LitElement {
     }
 
     .voice-btn--recording {
-      background: var(--ask-voice-recording-bg, #fef2f2);
-      border-color: var(--ask-voice-recording-border, #fca5a5);
+      background: var(--ask-danger-bg, #fef2f2);
+      border-color: var(--ask-danger-text, #fca5a5);
       color: var(--ask-voice-recording-text, #ef4444);
       animation: voice-pulse 1.5s ease-in-out infinite;
     }
@@ -41,7 +43,7 @@ export class AskVoiceInput extends LitElement {
       font-size: 0.75rem;
       font-family: monospace;
       color: var(--ask-voice-timer, #ef4444);
-      margin-left: 0.5rem;
+      margin-left: var(--ask-radius, 0.5rem);
       align-self: center;
     }
 
@@ -50,39 +52,8 @@ export class AskVoiceInput extends LitElement {
       50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
     }
 
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --ask-voice-border: var(--ask-voice-border-dark, #262626);
-        --ask-voice-bg: var(--ask-voice-bg-dark, #1a1a1a);
-        --ask-voice-text: var(--ask-voice-text-dark, #a3a3a3);
-        --ask-voice-hover-bg: var(--ask-voice-hover-bg-dark, #262626);
-        --ask-voice-recording-bg: var(--ask-voice-recording-bg-dark, #450a0a);
-        --ask-voice-recording-border: var(--ask-voice-recording-border-dark, #7f1d1d);
-        --ask-voice-recording-text: var(--ask-voice-recording-text-dark, #fca5a5);
-        --ask-voice-timer: var(--ask-voice-timer-dark, #fca5a5);
-      }
-    }
-    :host-context(.dark) {
-      --ask-voice-border: var(--ask-voice-border-dark, #262626);
-      --ask-voice-bg: var(--ask-voice-bg-dark, #1a1a1a);
-      --ask-voice-text: var(--ask-voice-text-dark, #a3a3a3);
-      --ask-voice-hover-bg: var(--ask-voice-hover-bg-dark, #262626);
-      --ask-voice-recording-bg: var(--ask-voice-recording-bg-dark, #450a0a);
-      --ask-voice-recording-border: var(--ask-voice-recording-border-dark, #7f1d1d);
-      --ask-voice-recording-text: var(--ask-voice-recording-text-dark, #fca5a5);
-      --ask-voice-timer: var(--ask-voice-timer-dark, #fca5a5);
-    }
-    :host-context(.light) {
-      --ask-voice-border: var(--ask-voice-border-light, #e5e5e5);
-      --ask-voice-bg: var(--ask-voice-bg-light, #fff);
-      --ask-voice-text: var(--ask-voice-text-light, #525252);
-      --ask-voice-hover-bg: var(--ask-voice-hover-bg-light, #f5f5f5);
-      --ask-voice-recording-bg: var(--ask-voice-recording-bg-light, #fef2f2);
-      --ask-voice-recording-border: var(--ask-voice-recording-border-light, #fca5a5);
-      --ask-voice-recording-text: var(--ask-voice-recording-text-light, #ef4444);
-      --ask-voice-timer: var(--ask-voice-timer-light, #ef4444);
-    }
+    
+    
   `;
 
   @property({ type: Boolean, reflect: true }) recording = false;

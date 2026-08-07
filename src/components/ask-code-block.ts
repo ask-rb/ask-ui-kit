@@ -1,17 +1,19 @@
 import { LitElement, html, css } from "lit";
+import { tokens } from "../styles/tokens.js";
 import { property, state } from "lit/decorators.js";
 
 export class AskCodeBlock extends LitElement {
-  static styles = css`
+  static styles = css`${tokens}
+
     :host {
       display: block;
     }
 
     .code-wrapper {
       position: relative;
-      background: var(--ask-code-bg, #f5f5f5);
-      border: 1px solid var(--ask-code-border, #e5e5e5);
-      border-radius: 0.5rem;
+      background: var(--ask-text, #f5f5f5);
+      border: 1px solid var(--ask-border, #e5e5e5);
+      border-radius: var(--ask-radius, 0.5rem);
       overflow: hidden;
     }
 
@@ -19,11 +21,11 @@ export class AskCodeBlock extends LitElement {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.375rem 0.75rem;
+      padding: var(--ask-radius-small, 0.375rem) 0.75rem;
       font-size: 0.75rem;
-      color: var(--ask-code-header-text, #737373);
-      background: var(--ask-code-header-bg, #e5e5e5);
-      border-bottom: 1px solid var(--ask-code-border, #e5e5e5);
+      color: var(--ask-text-faint, #737373);
+      background: var(--ask-border, #e5e5e5);
+      border-bottom: 1px solid var(--ask-border, #e5e5e5);
     }
 
     .code-language {
@@ -36,11 +38,11 @@ export class AskCodeBlock extends LitElement {
       display: flex;
       align-items: center;
       gap: 0.25rem;
-      padding: 0.125rem 0.5rem;
+      padding: 0.125rem var(--ask-radius, 0.5rem);
       border-radius: 0.25rem;
-      border: 1px solid var(--ask-code-border, #e5e5e5);
-      background: var(--ask-code-btn-bg, #fff);
-      color: var(--ask-code-btn-text, #525252);
+      border: 1px solid var(--ask-border, #e5e5e5);
+      background: var(--ask-surface, #fff);
+      color: var(--ask-text-faint, #525252);
       font-size: 0.75rem;
       cursor: pointer;
       transition: background 0.1s, opacity 0.1s;
@@ -50,7 +52,7 @@ export class AskCodeBlock extends LitElement {
       opacity: 1;
     }
     .code-copy-btn:hover {
-      background: var(--ask-code-btn-hover-bg, #e5e5e5);
+      background: var(--ask-border, #e5e5e5);
     }
 
     .code-body {
@@ -59,43 +61,12 @@ export class AskCodeBlock extends LitElement {
       font-family: "SF Mono", Monaco, Menlo, monospace;
       font-size: 0.8125rem;
       line-height: 1.6;
-      color: var(--ask-code-text, #404040);
+      color: var(--ask-border-strong, #404040);
       white-space: pre;
     }
 
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      :host {
-        --ask-code-bg: var(--ask-code-bg-dark, #1a1a1a);
-        --ask-code-border: var(--ask-code-border-dark, #262626);
-        --ask-code-header-bg: var(--ask-code-header-bg-dark, #141414);
-        --ask-code-header-text: var(--ask-code-header-text-dark, #a3a3a3);
-        --ask-code-text: var(--ask-code-text-dark, #e5e5e5);
-        --ask-code-btn-bg: var(--ask-code-btn-bg-dark, #262626);
-        --ask-code-btn-text: var(--ask-code-btn-text-dark, #a3a3a3);
-        --ask-code-btn-hover-bg: var(--ask-code-btn-hover-bg-dark, #333);
-      }
-    }
-    :host-context(.dark) {
-      --ask-code-bg: var(--ask-code-bg-dark, #1a1a1a);
-      --ask-code-border: var(--ask-code-border-dark, #262626);
-      --ask-code-header-bg: var(--ask-code-header-bg-dark, #141414);
-      --ask-code-header-text: var(--ask-code-header-text-dark, #a3a3a3);
-      --ask-code-text: var(--ask-code-text-dark, #e5e5e5);
-      --ask-code-btn-bg: var(--ask-code-btn-bg-dark, #262626);
-      --ask-code-btn-text: var(--ask-code-btn-text-dark, #a3a3a3);
-      --ask-code-btn-hover-bg: var(--ask-code-btn-hover-bg-dark, #333);
-    }
-    :host-context(.light) {
-      --ask-code-bg: var(--ask-code-bg-light, #f5f5f5);
-      --ask-code-border: var(--ask-code-border-light, #e5e5e5);
-      --ask-code-header-bg: var(--ask-code-header-bg-light, #e5e5e5);
-      --ask-code-header-text: var(--ask-code-header-text-light, #737373);
-      --ask-code-text: var(--ask-code-text-light, #404040);
-      --ask-code-btn-bg: var(--ask-code-btn-bg-light, #fff);
-      --ask-code-btn-text: var(--ask-code-btn-text-light, #525252);
-      --ask-code-btn-hover-bg: var(--ask-code-btn-hover-bg-light, #e5e5e5);
-    }
+    
+    
   `;
 
   @property({ type: String }) code = "";
