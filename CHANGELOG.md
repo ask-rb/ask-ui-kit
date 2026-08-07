@@ -1,3 +1,11 @@
+# Changelog
+
+## [0.4.1] — 2026-08-07
+
+### Added
+
+- **`<ask-device-auth>` component** — the RFC 8628 device-authorization dance as a themed web component. Props: `verification-uri`, `user-code`, `pending` (reflects the "not authorized yet" notice), `expires-label`. The completion click fires a bubbling `ask-authorize` event for the host app to poll the token endpoint. Extracted from the Anywaye providers page (xAI / GitHub Copilot connect flows).
+
 ## [0.4.0] — 2026-08-07
 
 ### Added

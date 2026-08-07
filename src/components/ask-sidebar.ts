@@ -163,10 +163,10 @@ export class AskSidebar extends LitElement {
   `;
 
   @property({ type: String }) groups = "";
-  @property({ type: String }) activeId = "";
-@property({ type: String }) newChatLabel = "New chat";
-/** sessionStorage key for collapse/expand state (persists across navigations). */
-@property({ type: String }) storageKey = "ask-sidebar";
+  @property({ type: String, attribute: "active-id" }) activeId = "";
+  @property({ type: String, attribute: "new-chat-label" }) newChatLabel = "New chat";
+  /** sessionStorage key for collapse/expand state (persists across navigations). */
+  @property({ type: String, attribute: "storage-key" }) storageKey = "ask-sidebar";
 
 
   @state() private _collapsed: Record<string, boolean> = {};

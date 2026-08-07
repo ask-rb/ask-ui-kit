@@ -113,6 +113,18 @@ test.describe("ask-sidebar", () => {
     });
   });
 
+  test("kebab-case attributes map to properties", async ({ page }) => {
+    await page.goto(url("ask-sidebar"));
+    await page.evaluate(() => {
+      const first = document.querySelector("ask-sidebar");
+      if (first?.activeId !== "chat-2") throw new Error(`active-id not mapped (got ${first?.activeId})`);
+      const second = document.querySelectorAll("ask-sidebar")[1];
+      if (second?.newChatLabel !== "Start a chat") {
+        throw new Error(`new-chat-label not mapped (got ${second?.newChatLabel})`);
+      }
+    });
+  });
+
   test("collapse state survives a reload (sessionStorage)", async ({ page }) => {
     await page.goto(url("ask-sidebar"));
     await page.evaluate(() => {
