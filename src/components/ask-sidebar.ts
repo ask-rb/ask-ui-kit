@@ -75,7 +75,7 @@ export class AskSidebar extends LitElement {
       border-radius: var(--ask-radius-small, 0.375rem);
     }
     .group-header:hover {
-      background: var(--ask-text, #f5f5f5);
+      background: var(--ask-surface-hover, #f5f5f5);
       color: var(--ask-text, #171717);
     }
     .chevron {
@@ -110,10 +110,10 @@ export class AskSidebar extends LitElement {
       box-sizing: border-box;
     }
     .node:hover {
-      background: var(--ask-text, #f5f5f5);
+      background: var(--ask-surface-hover, #f5f5f5);
     }
     .node--active {
-      background: var(--ask-border, #e5e5e5);
+      background: var(--ask-surface-active, #e5e5e5);
       border-color: var(--ask-border-strong, #d4d4d4);
     }
     .node--indent-1 {
