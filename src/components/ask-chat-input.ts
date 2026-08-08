@@ -11,7 +11,7 @@ export class AskChatInput extends LitElement {
 
     .input-card {
       display: flex;
-      align-items: flex-end;
+      flex-direction: column;
       gap: var(--ask-radius, 0.5rem);
       padding: var(--ask-radius, 0.5rem) 1rem;
       background: var(--ask-surface, #fff);
@@ -21,6 +21,32 @@ export class AskChatInput extends LitElement {
     }
     .input-card:focus-within {
       border-color: var(--ask-text-muted, #a3a3a3);
+    }
+
+    .input-main {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--ask-radius, 0.5rem);
+    }
+
+    /* Context pill(s) above the input (the thing being chatted about). */
+    .input-context {
+      display: flex;
+      align-items: center;
+      gap: var(--ask-radius-small, 0.375rem);
+      margin-bottom: 0.375rem;
+    }
+
+    /* Bottom toolbar row inside the input: host content (attachments,
+     * approve chips, model selector) left, send button right. Rendered
+     * only when the host provides toolbar content. */
+    .input-toolbar {
+      display: flex;
+      align-items: center;
+      gap: var(--ask-radius, 0.5rem);
+    }
+    .input-toolbar-spacer {
+      flex: 1;
     }
 
     .input-textarea {
@@ -170,39 +196,61 @@ export class AskChatInput extends LitElement {
   }
 
   render() {
+    const hasContext = this.querySelector(":scope > [slot='context']") !== null;
+    const hasToolbar = this.querySelector(":scope > [slot='toolbar']") !== null;
     return html`
+      ${hasContext
+        ? html`<div class="input-context" part="context"><slot name="context"></slot></div>`
+        : ""}
       <div class="input-card">
-        <textarea
-          class="input-textarea"
-          .value=${this.value}
-          placeholder=${this.placeholder}
-          ?disabled=${this.disabled}
-          @input=${this._handleInput}
-          @keydown=${this._handleKeydown}
-          rows="1"
-        ></textarea>
-        <div class="input-actions">
-          <button
-            class="input-btn btn-send ${this.streaming ? "btn-hidden" : ""}"
-            @click=${this._submit}
-            ?disabled=${this.disabled || !this.value.trim()}
-            aria-label="Send message"
-          >
-            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </button>
-          <button
-            class="input-btn btn-stop ${this.streaming ? "" : "btn-hidden"}"
-            @click=${this._handleStop}
-            aria-label="Stop streaming"
-          >
-            <svg class="btn-icon" fill="currentColor" viewBox="0 0 24 24">
-              <rect x="6" y="6" width="12" height="12" rx="2"/>
-            </svg>
-          </button>
+        <div class="input-main">
+          <textarea
+            class="input-textarea"
+            .value=${this.value}
+            placeholder=${this.placeholder}
+            ?disabled=${this.disabled}
+            @input=${this._handleInput}
+            @keydown=${this._handleKeydown}
+            rows="1"
+          ></textarea>
+          <div class="input-actions">
+            ${hasToolbar ? "" : this._sendButton()}
+            <button
+              class="input-btn btn-stop ${this.streaming ? "" : "btn-hidden"}"
+              @click=${this._handleStop}
+              aria-label="Stop streaming"
+            >
+              <svg class="btn-icon" fill="currentColor" viewBox="0 0 24 24">
+                <rect x="6" y="6" width="12" height="12" rx="2"/>
+              </svg>
+            </button>
+          </div>
         </div>
+        ${hasToolbar
+          ? html`
+              <div class="input-toolbar" part="toolbar">
+                <slot name="toolbar"></slot>
+                <span class="input-toolbar-spacer"></span>
+                ${this._sendButton()}
+              </div>
+            `
+          : ""}
       </div>
+    `;
+  }
+
+  private _sendButton() {
+    return html`
+      <button
+        class="input-btn btn-send ${this.streaming ? "btn-hidden" : ""}"
+        @click=${this._submit}
+        ?disabled=${this.disabled || !this.value.trim()}
+        aria-label="Send message"
+      >
+        <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
     `;
   }
 }

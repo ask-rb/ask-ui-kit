@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.5.0] — 2026-08-08
+
+### Added
+
+- **`<ask-prompt-card>`** — the Codex-style suggestion tile: a colored
+  icon over a short label. Built-in `variant`s (explore / build / review /
+  fix) ship their own icon and accent color; `variant="custom"` takes an
+  icon from the default slot. Clicking fires a bubbling `ask-prompt`
+  event ({label, variant}) so the host can fill the input or submit.
+- **`<ask-empty-state>`** — a centered empty-state block: default
+  cloud-with-terminal icon (override via the `icon` slot), a `heading`,
+  and body content in the default slot (prompt cards, hints).
+
+### Changed
+
+- **`<ask-chat-input>`** — two new slots, both optional and backward
+  compatible: `context` renders a pill row above the input (the thing
+  being chatted about); `toolbar` renders a bottom row inside the card —
+  host content left (attachments, approve chips, model selector), the
+  send button moves to the toolbar's right when the toolbar is present.
+
 ## [0.4.1] — 2026-08-07
 
 ### Added

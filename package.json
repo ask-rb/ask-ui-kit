@@ -1,6 +1,6 @@
 {
   "name": "ask-ui-kit",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Framework-agnostic Web Components for AI chat interfaces — built with Lit",
   "license": "MIT",
   "type": "module",
