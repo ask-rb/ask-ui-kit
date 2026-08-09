@@ -25,7 +25,7 @@ export class AskFileUpload extends LitElement {
       padding: 1.5rem 1rem;
       border: 2px dashed var(--ask-border-strong, #d4d4d4);
       border-radius: 0.75rem;
-      background: var(--ask-text-inverse, #fafafa);
+      background: var(--ask-surface-muted, #fafafa);
       color: var(--ask-text-muted, #a3a3a3);
       font-size: 0.8125rem;
       cursor: pointer;
@@ -34,7 +34,7 @@ export class AskFileUpload extends LitElement {
     }
     .dropzone:hover {
       border-color: var(--ask-text-muted, #a3a3a3);
-      background: var(--ask-text, #f5f5f5);
+      background: var(--ask-surface-hover, #f5f5f5);
     }
     .dropzone:has(input:focus-visible) {
       border-color: var(--ask-text-muted, #a3a3a3);

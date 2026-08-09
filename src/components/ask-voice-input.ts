@@ -25,7 +25,7 @@ export class AskVoiceInput extends LitElement {
       position: relative;
     }
     .voice-btn:hover:not(:disabled) {
-      background: var(--ask-text, #f5f5f5);
+      background: var(--ask-surface-hover, #f5f5f5);
     }
     .voice-btn:disabled {
       opacity: 0.4;

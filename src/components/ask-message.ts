@@ -55,7 +55,7 @@ export class AskMessage extends LitElement {
           class="message-bubble ${isAssistant ? "message-bubble--assistant" : "message-bubble--user"}"
           style="${isAssistant
             ? "color: var(--ask-text, #171717)"
-            : `background: var(--ask-text, #f5f5f5); color: var(--ask-text, #171717)`}"
+            : `background: var(--ask-surface-muted, #f5f5f5); color: var(--ask-text, #171717)`}"
         >${this.content}</div>
       </div>
     `;

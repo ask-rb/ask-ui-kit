@@ -38,7 +38,7 @@ export class AskScrollBottom extends LitElement {
       transform: translateY(0);
     }
     .scroll-btn:hover {
-      background: var(--ask-text, #f5f5f5);
+      background: var(--ask-surface-hover, #f5f5f5);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 

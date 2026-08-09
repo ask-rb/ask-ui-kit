@@ -51,7 +51,7 @@ export class AskMarkdown extends LitElement {
     }
 
     .markdown-content code {
-      background: var(--ask-text, #f5f5f5);
+      background: var(--ask-surface-muted, #f5f5f5);
       padding: 0.125rem var(--ask-radius-small, 0.375rem);
       border-radius: 0.25rem;
       font-family: "SF Mono", Monaco, Menlo, monospace;

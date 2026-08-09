@@ -14,7 +14,7 @@ export class AskAttachment extends LitElement {
       align-items: center;
       gap: 0.625rem;
       padding: var(--ask-radius, 0.5rem) 0.75rem;
-      background: var(--ask-text-inverse, #fafafa);
+      background: var(--ask-surface-muted, #fafafa);
       border: 1px solid var(--ask-border, #e5e5e5);
       border-radius: 0.75rem;
       position: relative;

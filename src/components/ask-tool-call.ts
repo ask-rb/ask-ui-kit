@@ -20,7 +20,7 @@ export class AskToolCall extends LitElement {
       font-size: 0.8125rem;
       line-height: 1.5;
       color: var(--ask-text-faint, #525252);
-      background: var(--ask-text-inverse, #fafafa);
+      background: var(--ask-surface-muted, #fafafa);
       border: 1px solid var(--ask-border, #e5e5e5);
       transition: background 0.15s, border-color 0.15s;
     }

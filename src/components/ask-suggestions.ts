@@ -34,7 +34,7 @@ export class AskSuggestions extends LitElement {
       white-space: nowrap;
     }
     .suggestion-chip:hover {
-      background: var(--ask-text, #f5f5f5);
+      background: var(--ask-surface-hover, #f5f5f5);
       border-color: var(--ask-text-muted, #a3a3a3);
     }
 

@@ -72,7 +72,7 @@ export class AskConversationList extends LitElement {
       border: 1px solid transparent;
     }
     .conversation-item:hover {
-      background: var(--ask-text, #f5f5f5);
+      background: var(--ask-surface-hover, #f5f5f5);
     }
     .conversation-item--active {
       background: var(--ask-border, #e5e5e5);

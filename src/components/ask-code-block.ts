@@ -11,7 +11,7 @@ export class AskCodeBlock extends LitElement {
 
     .code-wrapper {
       position: relative;
-      background: var(--ask-text, #f5f5f5);
+      background: var(--ask-surface-muted, #f5f5f5);
       border: 1px solid var(--ask-border, #e5e5e5);
       border-radius: var(--ask-radius, 0.5rem);
       overflow: hidden;

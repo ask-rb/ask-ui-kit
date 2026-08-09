@@ -104,7 +104,7 @@ export class AskChatInput extends LitElement {
     }
 
     .btn-stop {
-      background: var(--ask-text, #f5f5f5);
+      background: var(--ask-surface-muted, #f5f5f5);
       color: var(--ask-input-stop-text, #ef4444);
     }
     .btn-stop:hover {
