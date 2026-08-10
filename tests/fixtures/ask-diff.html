@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ask-diff test fixture</title>
+</head>
+<body>
+  <ask-diff filename="app/controllers/orders_controller.rb" diff="--- a/app/controllers/orders_controller.rb
++++ b/app/controllers/orders_controller.rb
+@@ -10,7 +10,8 @@ class OrdersController < ApplicationController
+   def index
+     @orders = Order.all
++    @orders = @orders.where(status: params[:status]) if params[:status]
+   end
+ end"></ask-diff>
+  <hr>
+  <ask-diff></ask-diff>
+
+  <script type="module" src="/dist/index.js"></script>
+</body>
+</html>

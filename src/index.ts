@@ -1,6 +1,11 @@
 export { AskMessage } from "./components/ask-message.js";
 export { AskThinking } from "./components/ask-thinking.js";
 export { AskToolCall } from "./components/ask-tool-call.js";
+export { AskToolApproval } from "./components/ask-tool-approval.js";
+export { AskTodoList } from "./components/ask-todo-list.js";
+export { AskPlan } from "./components/ask-plan.js";
+export { AskDiff } from "./components/ask-diff.js";
+export { AskTerminalOutput } from "./components/ask-terminal-output.js";
 export { AskStreaming } from "./components/ask-streaming.js";
 export { AskCodeBlock } from "./components/ask-code-block.js";
 export { AskChatInput } from "./components/ask-chat-input.js";

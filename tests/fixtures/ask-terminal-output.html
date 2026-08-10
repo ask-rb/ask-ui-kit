@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ask-terminal-output test fixture</title>
+</head>
+<body>
+  <ask-terminal-output output="line one&#10;line two"></ask-terminal-output>
+  <hr>
+  <ask-terminal-output></ask-terminal-output>
+  <hr>
+  <ask-terminal-output id="long" max-lines="3"></ask-terminal-output>
+
+  <script type="module" src="/dist/index.js"></script>
+  <script type="module">
+    const el = document.querySelector("#long");
+    el.output = Array.from({ length: 10 }, (_, i) => `line ${i + 1}`).join("\n");
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ask-tool-approval test fixture</title>
+</head>
+<body>
+  <ask-tool-approval action-id="7" tool-name="bash" args="{&quot;command&quot;:&quot;rm -rf tmp&quot;}" message="Calling bash requires approval"></ask-tool-approval>
+  <hr>
+  <ask-tool-approval action-id="8" tool-name="write" args="{}" status="approved"></ask-tool-approval>
+  <hr>
+  <ask-tool-approval action-id="9" tool-name="edit" status="rejected"></ask-tool-approval>
+
+  <script type="module" src="/dist/index.js"></script>
+</body>
+</html>

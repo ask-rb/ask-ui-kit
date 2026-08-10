@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ask-todo-list test fixture</title>
+</head>
+<body>
+  <ask-todo-list></ask-todo-list>
+  <hr>
+  <ask-todo-list id="with-items"></ask-todo-list>
+
+  <script type="module" src="/dist/index.js"></script>
+  <script type="module">
+    const el = document.querySelector("#with-items");
+    el.todos = [
+      { id: "1", title: "Write the adapter tests", status: "in_progress" },
+      { id: "2", title: "Run the full suite", status: "pending" },
+      { id: "3", title: "Commit", status: "completed" },
+    ];
+  </script>
+</body>
+</html>
