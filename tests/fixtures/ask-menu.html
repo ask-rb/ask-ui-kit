@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ask-menu test fixture</title>
+</head>
+<body>
+  <ask-menu id="m1" trigger-label="Switch workspace"
+    items='[{"id":"a","label":"project-a","description":"/tmp/a","icon":"📁","active":true},{"id":"b","label":"project-b","description":"/tmp/b","icon":"📁"}]'></ask-menu>
+  <hr>
+  <ask-menu id="m2" trigger-label="Empty menu"></ask-menu>
+
+  <script type="module" src="/dist/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>ask-dialog test fixture</title>
+</head>
+<body>
+  <ask-dialog id="d1" header="Open workspace">
+    <p>Path to a project directory.</p>
+    <div slot="footer"><button id="go">Open</button></div>
+  </ask-dialog>
+  <ask-dialog id="d2" header="Confirm"></ask-dialog>
+
+  <script type="module" src="/dist/index.js"></script>
+  <script type="module">
+    document.querySelector("#d1").open = true;
+  </script>
+</body>
+</html>
