@@ -36,7 +36,7 @@ test.describe("ask-diff", () => {
       const el = document.querySelector("ask-diff");
       return el?.shadowRoot?.querySelector(".line--add .content")?.textContent;
     });
-    expect(addedText).toContain("where(status: params[:status])");
+    expect(addedText).toContain("Order.where(paid: true)");
   });
 
   test("shows 'No changes' for empty diff", async ({ page }) => {

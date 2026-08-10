@@ -9,8 +9,8 @@
 +++ b/app/controllers/orders_controller.rb
 @@ -10,7 +10,8 @@ class OrdersController < ApplicationController
    def index
-     @orders = Order.all
-+    @orders = @orders.where(status: params[:status]) if params[:status]
+-    @orders = Order.all
++    @orders = Order.where(paid: true)
    end
  end"></ask-diff>
   <hr>
