@@ -85,16 +85,19 @@ ${SHAPE}
 ${varLines("dark")}
 }
 
-/* Explicit light theme pins light */
-:host([theme="light"]),
-:host-context([theme="light"]) {
-${varLines("light")}
-}
-
-/* OS preference, unless the app pinned a theme */
+/* OS preference. MUST come before the light pin below: the two blocks have
+   equal specificity, so source order decides, and an explicit [theme="light"]
+   pin has to beat a dark-OS machine. (This ordering was inverted once and
+   the pin silently lost — pinned-light components rendered dark.) */
 @media (prefers-color-scheme: dark) {
   :host(:not([theme="light"])) {
 ${varLines("dark")}
   }
+}
+
+/* Explicit light theme pins light — last, so it wins over the OS block */
+:host([theme="light"]),
+:host-context([theme="light"]) {
+${varLines("light")}
 }
 `);

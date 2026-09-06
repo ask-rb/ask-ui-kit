@@ -1,3 +1,14 @@
+## [0.5.2] — 2026-09-06
+
+### Fixed
+
+- **Explicit light theme now wins over a dark OS.** The
+  `prefers-color-scheme: dark` block came after the `[theme="light"]` pin in
+  the emitted CSS with equal specificity, so on a dark-OS machine a pinned
+  light theme silently lost and ask-* components rendered dark inside a
+  light page. The OS block now emits before the light pin, letting source
+  order hand the win to the pin.
+
 # Changelog
 
 ## [0.5.0] — 2026-08-08
